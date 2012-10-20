@@ -1,0 +1,27 @@
+- algoritmi simetrici (DES/ AES)
+padding, moduri de operare (ECB, CBC etc), generare de chei, criptarea folosind parole
+- mac-uri
+- algoritmi asimetrici, schimbul de chei, , semnaturi digitale
+
+===========================
+
+* arhitectura de tip service provider interface
+* instalare fisiere policy nerestrictionate
+* instalare provider bouncy castle
+* criptare simtrica
+** exemplu AES in CBC mode si padding (explicare un pic padding si foarte scurt modurile ECB, si CBC) 
+** generare programatica chei random
+* hash-uri critografice: SHA-1
+* criptare asimetrica
+** chei publice, private, 
+** exemplu RSA
+* semnaturi digitale
+** exemplu
+* exemplu java key tool
+
+============
+
+pasi
+- instalare policy files - unlimited strenght jurisdiction files
+- instalare provider - adaugare in jre/lib/security/java.security
+security.provider.11=org.bouncycastle.jce.provider.BouncyCastleProvider
