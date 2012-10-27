@@ -5,18 +5,31 @@
 	<artifactId>jce-examples</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<dependencies>
-		<dependency>
-			<groupId>bouncycastle</groupId>
-			<artifactId>bcprov-jdk14</artifactId>
-			<version>138</version>
-		</dependency>
-	</dependencies>
-
 	<repositories>
 		<repository>
 			<id>bouncy-castle-repo</id>
-			<url>http://mvnrepository.com/artifact/org.bouncycastle</url>
+			<url>http://repo2.maven.org/maven2/org/bouncycastle/</url>
 		</repository>
 	</repositories>
+
+	<dependencies>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-jdk15on</artifactId>
+			<version>1.47</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcprov-ext-jdk15on</artifactId>
+			<version>1.47</version>
+		</dependency>
+		<dependency>
+			<groupId>org.bouncycastle</groupId>
+			<artifactId>bcpkix-jdk15on</artifactId>
+			<version>1.47</version>
+		</dependency>
+ 	
+	</dependencies>
+
+
 </project>
