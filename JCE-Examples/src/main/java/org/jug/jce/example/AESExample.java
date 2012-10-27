@@ -1,19 +1,37 @@
 package org.jug.jce.example;
 
 import java.security.Key;
+import java.security.Security;
 import java.util.Arrays;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 /**
+ * Running these examples might requiere installing unlimited strenght
+ * jurisdiction files (copy in jdk1.7.0_01\jre\lib\security)
  * 
  * @author Florin
  */
 public class AESExample {
 
+	/**
+	 * The provider can 
+	 * <li>be installed dynamically or </li> 
+	 * <li>by editing the jdk/jre/lib/security/java.security file to add a new provider
+	 * (security.provider.11=org.bouncycastle.jce.provider.BouncyCastleProvider)
+	 * The provider libraries can be added to jdk/jre/lib/ext 
+	 * </li>
+	 */
+	static {
+		Security.addProvider(new BouncyCastleProvider());
+	}
+
 	private static final String AES_ECB_PKCS7PADDING = "AES/ECB/PKCS7Padding";
-	//private static final String AES_ECB_NOPADDING = "AES/ECB/NoPadding";
+
+	// private static final String AES_ECB_NOPADDING = "AES/ECB/NoPadding";
 
 	private Key generateKeyForAES() {
 		KeyGenerator generator;
@@ -31,7 +49,7 @@ public class AESExample {
 			Cipher cipher = Cipher.getInstance(AES_ECB_PKCS7PADDING, "BC");
 			System.out.println("Bytes to encrypt: " + Utils.toHex(inputBytes));
 			cipher.init(Cipher.ENCRYPT_MODE, key);
-			byte[] encryptedBytes = new byte[cipher.getOutputSize(inputBytes.length)];			
+			byte[] encryptedBytes = new byte[cipher.getOutputSize(inputBytes.length)];
 			int lenght = cipher.update(inputBytes, 0, inputBytes.length, encryptedBytes);
 			lenght += cipher.doFinal(encryptedBytes, lenght);
 
@@ -46,9 +64,10 @@ public class AESExample {
 		try {
 			Cipher cipher = Cipher.getInstance(AES_ECB_PKCS7PADDING, "BC");
 			cipher.init(Cipher.DECRYPT_MODE, key);
-			// estimated output size may be greater than the actual size (because of padding)
+			// estimated output size may be greater than the actual size
+			// (because of padding)
 			// actual size will be indicated by lenght
-			byte[] plainBytes = new byte[cipher.getOutputSize(encryptedBytes.length)];					
+			byte[] plainBytes = new byte[cipher.getOutputSize(encryptedBytes.length)];
 			int lenght = cipher.update(encryptedBytes, 0, encryptedBytes.length, plainBytes);
 			lenght += cipher.doFinal(plainBytes, lenght);
 			System.out.println("Decrypted bytes: " + Utils.toHex(plainBytes));
@@ -67,7 +86,7 @@ public class AESExample {
 		System.out.println(new String(plainBytes, "UTF-8"));
 
 	}
-	
+
 	public static void main(String[] args) {
 		try {
 			new AESExample().encryptExample();

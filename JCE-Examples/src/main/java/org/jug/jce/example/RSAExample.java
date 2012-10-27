@@ -3,11 +3,18 @@ package org.jug.jce.example;
 import java.security.Key;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
+import java.security.Security;
 
 import javax.crypto.Cipher;
 
+import org.bouncycastle.jce.provider.BouncyCastleProvider;
+
 public class RSAExample {
 
+	static {
+		Security.addProvider(new BouncyCastleProvider());
+	}
+	
 	private static final String RSA_NONE_PKCS1PADDING = "RSA/None/PKCS1Padding";
 	
 	public byte[] encrypt(byte[] inputBytes, Key publicKey) {

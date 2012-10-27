@@ -1,0 +1,22 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>org.jug</groupId>
+	<artifactId>jce-examples</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+
+	<dependencies>
+		<dependency>
+			<groupId>bouncycastle</groupId>
+			<artifactId>bcprov-jdk14</artifactId>
+			<version>138</version>
+		</dependency>
+	</dependencies>
+
+	<repositories>
+		<repository>
+			<id>bouncy-castle-repo</id>
+			<url>http://mvnrepository.com/artifact/org.bouncycastle</url>
+		</repository>
+	</repositories>
+</project>
